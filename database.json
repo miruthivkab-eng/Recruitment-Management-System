@@ -1,0 +1,218 @@
+{
+  "jobs": [
+    {
+      "id": "JOB-101",
+      "title": "Senior Full Stack Developer",
+      "department": "Engineering",
+      "location": "Remote",
+      "type": "Full-Time",
+      "experience": "4+ Years",
+      "salary": "$90,000 - $120,000",
+      "skills": [
+        "React",
+        "Node.js",
+        "Express",
+        "MongoDB",
+        "TypeScript"
+      ],
+      "description": "We are looking for an experienced Senior Full Stack Developer to lead the architecture and development of our core cloud software solutions.",
+      "status": "Active",
+      "postedDate": "2026-09-01"
+    },
+    {
+      "id": "JOB-102",
+      "title": "Product UI/UX Designer",
+      "department": "Design",
+      "location": "Hybrid (Chennai)",
+      "type": "Full-Time",
+      "experience": "2+ Years",
+      "salary": "$70,000 - $95,000",
+      "skills": [
+        "Figma",
+        "UI Design",
+        "Prototyping",
+        "User Research",
+        "CSS Design"
+      ],
+      "description": "Join our creative team to design intuitive, high-converting product interfaces and seamless web user experiences.",
+      "status": "Active",
+      "postedDate": "2026-09-05"
+    },
+    {
+      "id": "JOB-103",
+      "title": "Data Analyst & BI Specialist",
+      "department": "Analytics",
+      "location": "On-Site (Bangalore)",
+      "type": "Full-Time",
+      "experience": "2+ Years",
+      "salary": "$65,000 - $85,000",
+      "skills": [
+        "Python",
+        "SQL",
+        "Tableau",
+        "PowerBI",
+        "Data Modeling"
+      ],
+      "description": "Analyze business metrics, generate actionable insights, and design interactive BI dashboards for senior management.",
+      "status": "Active",
+      "postedDate": "2026-09-08"
+    },
+    {
+      "id": "JOB-104",
+      "title": "Technical HR Recruiter",
+      "department": "Human Resources",
+      "location": "Remote",
+      "type": "Contract",
+      "experience": "1+ Years",
+      "salary": "$50,000 - $65,000",
+      "skills": [
+        "Talent Acquisition",
+        "Technical Sourcing",
+        "Interviewing",
+        "ATS Management"
+      ],
+      "description": "Source top technical engineering talent, conduct preliminary screenings, and streamline the hiring process.",
+      "status": "Active",
+      "postedDate": "2026-09-10"
+    }
+  ],
+  "candidates": [
+    {
+      "id": "CAND-370",
+      "name": "miruthu",
+      "email": "miruthu@gmail.com",
+      "phone": "9876786485",
+      "jobId": "JOB-101",
+      "jobTitle": "Senior Full Stack Developer",
+      "experience": "3",
+      "skills": [
+        "python",
+        "java"
+      ],
+      "coverLetter": "",
+      "stage": "Shortlisted",
+      "matchScore": 84,
+      "resumeFilename": "1789212747922_Miruthivka_B_Resume_update_1.pdf",
+      "resumeOriginalName": "Miruthivka B Resume update 1.pdf",
+      "appliedDate": "2026-09-12"
+    },
+    {
+      "id": "CAND-201",
+      "name": "Rahul Kumar",
+      "email": "rahul.k@example.com",
+      "phone": "+91 9876543210",
+      "jobId": "JOB-101",
+      "jobTitle": "Senior Full Stack Developer",
+      "experience": "5 Years",
+      "skills": [
+        "React",
+        "Node.js",
+        "PostgreSQL",
+        "AWS"
+      ],
+      "coverLetter": "Extensive experience in building enterprise SaaS applications with scalable microservices.",
+      "stage": "Shortlisted",
+      "matchScore": 92,
+      "resumeFilename": "sample_resume_rahul.pdf",
+      "resumeOriginalName": "Rahul_Kumar_Resume.pdf",
+      "appliedDate": "2026-09-03"
+    },
+    {
+      "id": "CAND-202",
+      "name": "Priya Sharma",
+      "email": "priya.s@example.com",
+      "phone": "+91 9876543211",
+      "jobId": "JOB-102",
+      "jobTitle": "Product UI/UX Designer",
+      "experience": "3 Years",
+      "skills": [
+        "Figma",
+        "Design Systems",
+        "User Journeys"
+      ],
+      "coverLetter": "Passionate about creating accessible, beautiful glassmorphism interfaces and design tokens.",
+      "stage": "Interview Scheduled",
+      "matchScore": 88,
+      "resumeFilename": "sample_resume_priya.pdf",
+      "resumeOriginalName": "Priya_Sharma_Portfolio.pdf",
+      "appliedDate": "2026-09-06"
+    },
+    {
+      "id": "CAND-203",
+      "name": "Anish Verma",
+      "email": "anish.v@example.com",
+      "phone": "+91 9876543212",
+      "jobId": "JOB-101",
+      "jobTitle": "Senior Full Stack Developer",
+      "experience": "4 Years",
+      "skills": [
+        "Vue.js",
+        "Express",
+        "Docker",
+        "GraphQL"
+      ],
+      "coverLetter": "Full stack engineer eager to contribute to high performance web software.",
+      "stage": "Applied",
+      "matchScore": 85,
+      "resumeFilename": "sample_resume_anish.pdf",
+      "resumeOriginalName": "Anish_Verma_CV.pdf",
+      "appliedDate": "2026-09-07"
+    },
+    {
+      "id": "CAND-204",
+      "name": "Deepika Patel",
+      "email": "deepika.p@example.com",
+      "phone": "+91 9876543213",
+      "jobId": "JOB-103",
+      "jobTitle": "Data Analyst & BI Specialist",
+      "experience": "2 Years",
+      "skills": [
+        "Python",
+        "Pandas",
+        "SQL",
+        "Tableau"
+      ],
+      "coverLetter": "Data wizard with proven track record in optimizing data pipelines and visualizations.",
+      "stage": "Hired",
+      "matchScore": 95,
+      "resumeFilename": "sample_resume_deepika.pdf",
+      "resumeOriginalName": "Deepika_Patel_Resume.pdf",
+      "appliedDate": "2026-09-09"
+    },
+    {
+      "id": "CAND-205",
+      "name": "Karthik Sundaram",
+      "email": "karthik.s@example.com",
+      "phone": "+91 9876543214",
+      "jobId": "JOB-104",
+      "jobTitle": "Technical HR Recruiter",
+      "experience": "2 Years",
+      "skills": [
+        "Sourcing",
+        "LinkedIn Recruiter",
+        "ATS"
+      ],
+      "coverLetter": "Recruiting specialist focused on tech talent acquisition and employer branding.",
+      "stage": "Screening",
+      "matchScore": 79,
+      "resumeFilename": "sample_resume_karthik.pdf",
+      "resumeOriginalName": "Karthik_Sundaram_Resume.pdf",
+      "appliedDate": "2026-09-11"
+    }
+  ],
+  "interviews": [
+    {
+      "id": "INT-301",
+      "candidateId": "CAND-202",
+      "candidateName": "Priya Sharma",
+      "jobTitle": "Product UI/UX Designer",
+      "interviewer": "Sarah Jenkins (Head of Design)",
+      "date": "2026-09-15",
+      "time": "14:30",
+      "stage": "Technical Design Round",
+      "meetLink": "https://meet.google.com/abc-defg-hij",
+      "notes": "Review Figma design portfolio and execute live whiteboard design exercise.",
+      "status": "Scheduled"
+    }
+  ]
+}

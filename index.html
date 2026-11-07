@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recruitment Management System | HR Hiring Portal</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-icon">
+                    <i class="fa-solid fa-briefcase"></i>
+                </div>
+                <div class="brand-title">HireFlow</div>
+            </div>
+
+            <ul class="nav-menu">
+                <li class="nav-item active" data-tab="dashboard">
+                    <i class="fa-solid fa-chart-pie nav-icon"></i>
+                    <span>Dashboard</span>
+                </li>
+                <li class="nav-item" data-tab="jobs">
+                    <i class="fa-solid fa-layer-group nav-icon"></i>
+                    <span>Job Vacancies</span>
+                </li>
+                <li class="nav-item" data-tab="candidates">
+                    <i class="fa-solid fa-user-gear nav-icon"></i>
+                    <span>ATS Shortlisting</span>
+                </li>
+                <li class="nav-item" data-tab="apply">
+                    <i class="fa-solid fa-user-plus nav-icon"></i>
+                    <span>Candidate Portal</span>
+                </li>
+                <li class="nav-item" data-tab="interviews">
+                    <i class="fa-regular fa-calendar-check nav-icon"></i>
+                    <span>Interview Schedule</span>
+                </li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <div class="user-avatar">HR</div>
+                <div class="user-info">
+                    <span class="user-name">Talent Acquisition</span>
+                    <span class="user-role">Recruitment Admin</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Workspace -->
+        <main class="main-content">
+            <!-- Top Header Bar -->
+            <header class="top-bar">
+                <div class="page-title-group">
+                    <h1 id="page-title">Recruitment Dashboard</h1>
+                    <button class="btn btn-secondary dashboard-register-btn" onclick="switchTab('apply')">
+                        <i class="fa-solid fa-file-arrow-up"></i> Candidate Register
+                    </button>
+                    <p id="page-subtitle">Welcome back! Here is your hiring funnel overview.</p>
+                </div>
+                <div class="action-bar">
+                    <button class="btn btn-primary" onclick="openModal('modal-job')">
+                        <i class="fa-solid fa-plus"></i> Post Job Vacancy
+                    </button>
+                </div>
+            </header>
+
+            <!-- 1. DASHBOARD VIEW -->
+            <section id="view-dashboard" class="view-section active">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon-wrapper stat-icon-indigo">
+                            <i class="fa-solid fa-briefcase"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="stat-jobs">4</div>
+                            <div class="stat-label">Active Job Openings</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon-wrapper stat-icon-violet">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="stat-candidates">5</div>
+                            <div class="stat-label">Total Applicants</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon-wrapper stat-icon-emerald">
+                            <i class="fa-solid fa-user-check"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="stat-shortlisted">2</div>
+                            <div class="stat-label">Shortlisted</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon-wrapper stat-icon-amber">
+                            <i class="fa-solid fa-calendar-day"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="stat-interviews">1</div>
+                            <div class="stat-label">Interviews Today</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-panel">
+                    <div class="panel-header">
+                        <h2 class="panel-title"><i class="fa-solid fa-clock-rotate-left"></i> Recent Applications</h2>
+                        <button class="btn btn-secondary btn-sm" onclick="switchTab('candidates')">View All ATS Pipeline</button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="custom-table">
+                            <thead>
+                                <tr>
+                                    <th>Candidate</th>
+                                    <th>Target Position</th>
+                                    <th>Applied Date</th>
+                                    <th>Stage</th>
+                                    <th>Match</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="dashboard-recent-table">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. JOB VACANCIES VIEW -->
+            <section id="view-jobs" class="view-section">
+                <div class="glass-panel" style="padding: 20px 28px; margin-bottom: 24px;">
+                    <div style="display: flex; gap: 28px; align-items: center; justify-content: space-between;">
+                        <input type="text" id="search-jobs" class="form-input" placeholder="🔍 Search job title, skills or department..." style="max-width: 400px;">
+                        <div style="display: flex; gap: 20px;">
+                            <select id="filter-department" class="form-select">
+                                <option value="all">All Departments</option>
+                                <option value="Engineering">Engineering</option>
+                                <option value="Design">Design</option>
+                                <option value="Analytics">Analytics</option>
+                                <option value="Human Resources">Human Resources</option>
+                            </select>
+                            <button class="btn btn-primary" onclick="openModal('modal-job')">
+                                <i class="fa-solid fa-plus"></i> Post Vacancy
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="jobs-grid" id="jobs-cards-container">
+                    <!-- Dynamic Job Cards -->
+                </div>
+            </section>
+
+            <!-- 3. ATS SHORTLISTING & KANBAN PIPELINE VIEW -->
+            <section id="view-candidates" class="view-section">
+                <div class="glass-panel" style="padding: 16px 28px; margin-bottom: 20px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h2 class="panel-title"><i class="fa-solid fa-sliders"></i> Candidate Pipeline</h2>
+                        <span style="font-size: 0.85rem; color: var(--text-muted);">
+                            💡 Tip: Click <strong>"Shortlist"</strong> or move stage to trigger interview scheduling.
+                        </span>
+                    </div>
+                </div>
+
+                <div class="kanban-board">
+                    <!-- Column 1: Applied -->
+                    <div class="kanban-column">
+                        <div class="column-header">
+                            <div class="column-title">
+                                <i class="fa-solid fa-envelope-open-text" style="color: var(--accent-indigo);"></i>
+                                <span>Applied</span>
+                            </div>
+                            <span class="badge badge-applied" id="count-applied">0</span>
+                        </div>
+                        <div id="col-applied"></div>
+                    </div>
+
+                    <!-- Column 2: Shortlisted -->
+                    <div class="kanban-column">
+                        <div class="column-header">
+                            <div class="column-title">
+                                <i class="fa-solid fa-star" style="color: var(--accent-emerald);"></i>
+                                <span>Shortlisted</span>
+                            </div>
+                            <span class="badge badge-shortlisted" id="count-shortlisted">0</span>
+                        </div>
+                        <div id="col-shortlisted"></div>
+                    </div>
+
+                    <!-- Column 3: Interview Scheduled -->
+                    <div class="kanban-column">
+                        <div class="column-header">
+                            <div class="column-title">
+                                <i class="fa-solid fa-headset" style="color: var(--accent-violet);"></i>
+                                <span>Interview Scheduled</span>
+                            </div>
+                            <span class="badge badge-interview" id="count-interview">0</span>
+                        </div>
+                        <div id="col-interview"></div>
+                    </div>
+
+                    <!-- Column 4: Hired / Selected -->
+                    <div class="kanban-column">
+                        <div class="column-header">
+                            <div class="column-title">
+                                <i class="fa-solid fa-circle-check" style="color: var(--accent-emerald);"></i>
+                                <span>Hired / Selected</span>
+                            </div>
+                            <span class="badge badge-active" id="count-hired">0</span>
+                        </div>
+                        <div id="col-hired"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. CANDIDATE PORTAL & REGISTRATION (RESUME UPLOAD) -->
+            <section id="view-apply" class="view-section">
+                <div class="glass-panel" style="max-width: 760px; margin: 0 auto;">
+                    <div class="panel-header">
+                        <h2 class="panel-title"><i class="fa-solid fa-id-card"></i> Candidate Application & Resume Upload</h2>
+                    </div>
+
+                    <form id="form-candidate-apply">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                            <div class="form-group">
+                                <label class="form-label">Full Name *</label>
+                                <input type="text" id="app-name" class="form-input" placeholder="e.g. Ramesh Kumar" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Email Address *</label>
+                                <input type="email" id="app-email" class="form-input" placeholder="ramesh@example.com" required>
+                            </div>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                            <div class="form-group">
+                                <label class="form-label">Phone Number *</label>
+                                <input type="tel" id="app-phone" class="form-input" placeholder="+91 9876543210" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Select Job Vacancy *</label>
+                                <select id="app-job-id" class="form-select" required>
+                                    <!-- Populated dynamically -->
+                                </select>
+                            </div>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                            <div class="form-group">
+                                <label class="form-label">Years of Experience</label>
+                                <input type="text" id="app-experience" class="form-input" placeholder="e.g. 3 Years">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Key Skills (Comma separated)</label>
+                                <input type="text" id="app-skills" class="form-input" placeholder="e.g. React, Node.js, SQL">
+                            </div>
+                        </div>
+
+                        <!-- Resume Upload Section -->
+                        <div class="form-group">
+                            <label class="form-label">Upload Resume Document (PDF, DOCX, TXT) *</label>
+                            <div class="file-upload-zone" onclick="document.getElementById('app-resume-file').click()">
+                                <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+                                <div style="font-weight: 600;" id="upload-filename-text">Click to Upload Resume</div>
+                                <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px;">Supports PDF, DOCX, TXT up to 5MB</div>
+                            </div>
+                            <input type="file" id="app-resume-file" style="display: none;" accept=".pdf,.docx,.doc,.txt" onchange="handleFileSelected(this)">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Cover Letter / Note</label>
+                            <textarea id="app-cover" class="form-textarea" rows="3" placeholder="Brief statement about your interest..."></textarea>
+                        </div>
+
+                        <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 24px;">
+                            <button type="reset" class="btn btn-secondary">Clear</button>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fa-solid fa-paper-plane"></i> Submit Application & Resume
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- 5. INTERVIEW SCHEDULER VIEW -->
+            <section id="view-interviews" class="view-section">
+                <div class="glass-panel">
+                    <div class="panel-header">
+                        <h2 class="panel-title"><i class="fa-regular fa-calendar-check"></i> Scheduled Interviews</h2>
+                        <button class="btn btn-primary" onclick="openModal('modal-interview')">
+                            <i class="fa-solid fa-calendar-plus"></i> Schedule Interview
+                        </button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="custom-table">
+                            <thead>
+                                <tr>
+                                    <th>Candidate</th>
+                                    <th>Position</th>
+                                    <th>Interviewer</th>
+                                    <th>Date & Time</th>
+                                    <th>Round / Stage</th>
+                                    <th>Meeting Link</th>
+                                </tr>
+                            </thead>
+                            <tbody id="interviews-table-body">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- MODAL 1: POST JOB VACANCY -->
+    <div class="modal-overlay" id="modal-job">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 class="modal-title">Post New Job Vacancy</h3>
+                <button class="close-btn" onclick="closeModal('modal-job')">&times;</button>
+            </div>
+            <form id="form-post-job">
+                <div class="form-group">
+                    <label class="form-label">Job Vacancy Title *</label>
+                    <input type="text" id="job-title" class="form-input" placeholder="e.g. Senior Full Stack Engineer" required>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                    <div class="form-group">
+                        <label class="form-label">Department *</label>
+                        <select id="job-dept" class="form-select" required>
+                            <option value="Engineering">Engineering</option>
+                            <option value="Design">Design</option>
+                            <option value="Analytics">Analytics</option>
+                            <option value="Human Resources">Human Resources</option>
+                            <option value="Marketing">Marketing</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Location *</label>
+                        <input type="text" id="job-location" class="form-input" placeholder="e.g. Remote / Chennai" required>
+                    </div>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                    <div class="form-group">
+                        <label class="form-label">Job Type</label>
+                        <select id="job-type" class="form-select">
+                            <option value="Full-Time">Full-Time</option>
+                            <option value="Part-Time">Part-Time</option>
+                            <option value="Contract">Contract</option>
+                            <option value="Internship">Internship</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Salary Range</label>
+                        <input type="text" id="job-salary" class="form-input" placeholder="e.g. $80,000 - $110,000">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Required Skills (Comma separated)</label>
+                    <input type="text" id="job-skills" class="form-input" placeholder="React, Node.js, PostgreSQL">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Description</label>
+                    <textarea id="job-desc" class="form-textarea" rows="3" placeholder="Job duties..."></textarea>
+                </div>
+                <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 20px;">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('modal-job')">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Publish Vacancy</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL 2: SCHEDULE INTERVIEW -->
+    <div class="modal-overlay" id="modal-interview">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 class="modal-title">Schedule Interview Session</h3>
+                <button class="close-btn" onclick="closeModal('modal-interview')">&times;</button>
+            </div>
+            <form id="form-schedule-interview">
+                <div class="form-group">
+                    <label class="form-label">Select Candidate *</label>
+                    <select id="int-candidate-id" class="form-select" required>
+                        <!-- Dynamic options -->
+                    </select>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                    <div class="form-group">
+                        <label class="form-label">Interviewer Name *</label>
+                        <input type="text" id="int-interviewer" class="form-input" placeholder="e.g. Sarah Jenkins" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Interview Stage</label>
+                        <select id="int-stage" class="form-select">
+                            <option value="Screening Round">Screening Round</option>
+                            <option value="Technical Round">Technical Round</option>
+                            <option value="Managerial Round">Managerial Round</option>
+                            <option value="HR Round">HR Round</option>
+                        </select>
+                    </div>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                    <div class="form-group">
+                        <label class="form-label">Date *</label>
+                        <input type="date" id="int-date" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Time *</label>
+                        <input type="time" id="int-time" class="form-input" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Video Meeting Link</label>
+                    <input type="url" id="int-link" class="form-input" placeholder="https://meet.google.com/xyz-abcd-efg">
+                </div>
+                <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 20px;">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('modal-interview')">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Schedule Interview</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL 3: CANDIDATE PROFILE & RESUME VIEW -->
+    <div class="modal-overlay" id="modal-candidate-detail">
+        <div class="modal-box" style="max-width: 680px;">
+            <div class="modal-header">
+                <h3 class="modal-title" id="cd-modal-title">Candidate Profile</h3>
+                <button class="close-btn" onclick="closeModal('modal-candidate-detail')">&times;</button>
+            </div>
+            <div id="candidate-detail-content">
+                <!-- Populated dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- Application Script -->
+    <script src="js/app.js"></script>
+</body>
+</html>
